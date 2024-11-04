@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+      position: relative;
+      min-height: 100vh;
+      overflow: auto;
+    }
+    .logo-container {
+      position: relative;
+      height: 100%;
+      min-height: 100vh;
+    }
+    .background-logo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://github.com/Mark2024Eze/Proyecto-para-ingles/blob/main/instituto%20overcome.jpg?raw=true');
+      background-size: 50%;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.1;
+      z-index: -1;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center; /*sin este renglon el titulo estaria a la izq*/
+      padding: 20px;
+      background-color: transparent;
+    }
+    .header img {
+      max-width: 120px;
+      margin-right: 20px;
+    }
+    .header .title {
+      font-size: 1.5em;
+      color: #004d99;
+    }
+    .content {
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+      background-color: transparent;
+      margin: 20px;
+    }
+    .respuesta {
+      margin-bottom: 20px;
+    }
+    .options {
+      display: flex;
+      gap: 10px;
+    }
+    .option {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffffff;
+      border: 1px solid #a3c2f1;
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    .option:hover {
+      background-color: #e7f0ff;
+    }
+    .option.correct {
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+    }
+    .option.incorrect {
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #004d99;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+    button:hover {
+      background-color: #003366;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+    }
+  </style>
+  <title>Actividad de Preposiciones</title>
+</head>
+<body>
+  <div class="logo-container">
+    <div class="background-logo"></div>
+
+    <div class="header">
+      <img src="https://github.com/Mark2024Eze/Proyecto-para-ingles/blob/main/instituto%20overcome.jpg?raw=true" alt="Instituto Overcome">
+      <div class="title">Actividad: Elige la opción correcta</div>
+    </div>
+
+    <!-- Contenedor para centrar la imagen -->
+    <div style="display: flex; justify-content: center; margin-top: 20px; width: 100%;">
+        <img src="https://github.com/Mark2024Eze/Animales_Pre-Kinder_1/blob/main/close-up-adorable-kitten-couch.png?raw=true" alt="Imagen descriptiva" style="width: 300px;">
+      </div>
+      
+    <div class="content">
+      <h1>Complete con "on", "in" o "under"</h1>
+
+      <div class="respuesta">
+        <p>1) The book is ____ the wardrobe.</p>
+        <div class="options">
+          <label class="option"><input type="radio" name="Q1" data-correct="true">on</label>
+          <label class="option"><input type="radio" name="Q1" data-correct="false">in</label>
+          <label class="option"><input type="radio" name="Q1" data-correct="false">under</label>
+        </div>
+      </div>
+
+      <div class="respuesta">
+        <p>2) The yo-yo is ____ the bookcase.</p>
+        <div class="options">
+          <label class="option"><input type="radio" name="Q2" data-correct="true">on</label>
+          <label class="option"><input type="radio" name="Q2" data-correct="false">in</label>
+          <label class="option"><input type="radio" name="Q2" data-correct="false">under</label>
+        </div>
+      </div>
+
+      <div class="respuesta">
+        <p>3) The ball is ____ the basket.</p>
+        <div class="options">
+          <label class="option"><input type="radio" name="Q3" data-correct="false">on</label>
+          <label class="option"><input type="radio" name="Q3" data-correct="true">in</label>
+          <label class="option"><input type="radio" name="Q3" data-correct="false">under</label>
+        </div>
+      </div>
+
+      <div class="respuesta">
+        <p>4) The ruler is ____ the floor.</p>
+        <div class="options">
+          <label class="option"><input type="radio" name="Q4" data-correct="true">on</label>
+          <label class="option"><input type="radio" name="Q4" data-correct="false">in</label>
+          <label class="option"><input type="radio" name="Q4" data-correct="false">under</label>
+        </div>
+      </div>
+
+      <div class="respuesta">
+        <p>5) The teddy is ____ the bag.</p>
+        <div class="options">
+          <label class="option"><input type="radio" name="Q5" data-correct="false">on</label>
+          <label class="option"><input type="radio" name="Q5" data-correct="true">in</label>
+          <label class="option"><input type="radio" name="Q5" data-correct="false">under</label>
+        </div>
+      </div>
+
+      <div class="respuesta">
+        <p>6) The sharpener is ____ the table.</p>
+        <div class="options">
+          <label class="option"><input type="radio" name="Q6" data-correct="false">on</label>
+          <label class="option"><input type="radio" name="Q6" data-correct="false">in</label>
+          <label class="option"><input type="radio" name="Q6" data-correct="true">under</label>
+        </div>
+      </div>
+
+      <div class="respuesta">
+        <p>7) The rubber is ____ the cushion.</p>
+        <div class="options">
+          <label class="option"><input type="radio" name="Q7" data-correct="true">on</label>
+          <label class="option"><input type="radio" name="Q7" data-correct="false">in</label>
+          <label class="option"><input type="radio" name="Q7" data-correct="false">under</label>
+        </div>
+      </div>
+
+      <div class="respuesta">
+        <p>8) The sock is ____ the bed.</p>
+        <div class="options">
+          <label class="option"><input type="radio" name="Q8" data-correct="false">on</label>
+          <label class="option"><input type="radio" name="Q8" data-correct="false">in</label>
+          <label class="option"><input type="radio" name="Q8" data-correct="true">under</label>
+        </div>
+      </div>
+
+      <div class="respuesta">
+        <p>9) The shirt is ____ the wardrobe.</p>
+        <div class="options">
+          <label class="option"><input type="radio" name="Q9" data-correct="false">on</label>
+          <label class="option"><input type="radio" name="Q9" data-correct="true">in</label>
+          <label class="option"><input type="radio" name="Q9" data-correct="false">under</label>
+        </div>
+      </div>
+
+      <!-- Botones -->
+      <button id="verifyButton">Verificar respuestas</button>
+      <button id="clearButton" class="clear-btn">Borrar respuestas</button>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Profesora Mariana Cuello.</p>
+    </footer>
+  </div>
+
+  <script>
+    const correctAnswers = {
+      Q1: 'on',
+      Q2: 'on',
+      Q3: 'in',
+      Q4: 'on',
+      Q5: 'in',
+      Q6: 'under',
+      Q7: 'on',
+      Q8: 'under',
+      Q9: 'in'
+    };
+
+    document.getElementById('verifyButton').addEventListener('click', () => {
+      document.querySelectorAll('.respuesta').forEach((res) => {
+        const checkedInput = res.querySelector('input[type="radio"]:checked');
+        if (checkedInput) {
+          const correct = checkedInput.getAttribute('data-correct') === 'true';
+          checkedInput.parentElement.classList.add(correct ? 'correct' : 'incorrect');
+        }
+      });
+    });
+
+    document.getElementById('clearButton').addEventListener('click', () => {
+      document.querySelectorAll('input[type="radio"]').forEach((input) => {
+        input.checked = false;
+        input.parentElement.classList.remove('correct', 'incorrect');
+      });
+    });
+  </script>
+</body>
+</html>
