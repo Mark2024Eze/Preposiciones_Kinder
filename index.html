@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
       background-color: #f4f4f9;
       color: #333;
-      position: relative;
       min-height: 100vh;
-      overflow: auto;
     }
+
     .logo-container {
       position: relative;
-      height: 100%;
       min-height: 100vh;
     }
+
     .background-logo {
       position: absolute;
       top: 0;
@@ -33,76 +32,150 @@
       opacity: 0.1;
       z-index: -1;
     }
+     /* Ajustes para pantallas más pequeñas, como móviles */
+     @media (max-width: 400px) {
+      .background-logo {
+        background-size: 210px auto;
+        background-position: center 1500px;
+      }
+    }
+
+    /* Ajustes para pantallas medianas, como tablets */
+    @media (min-width: 769px) and (max-width: 1200px) {
+      .background-logo {
+        background-size: 500px auto;
+        background-position: center 200px;
+      }
+    }
+
+    /* Ajustes para pantallas grandes, como PC */
+    @media (min-width: 1201px) {
+      .background-logo {
+        background-size: 35%;
+        background-position: center 750px;
+      }
+    }
+
     .header {
       display: flex;
       align-items: center;
-      justify-content: center; /*sin este renglon el titulo estaria a la izq*/
+      justify-content: center; /* pone el titulo al centro de la cabecera*/
       padding: 20px;
       background-color: transparent;
     }
+
     .header img {
       max-width: 120px;
       margin-right: 20px;
     }
+
     .header .title {
-      font-size: 1.5em;
+      font-size: 2.1em;
       color: #004d99;
+      font-family: 'montserrat regular', sans-serif; /* Cambia 'NuevaFuente' al nombre de tu fuente elegida */
     }
+
     .content {
       padding: 20px;
-      position: relative;
-      z-index: 1;
-      background-color: transparent;
       margin: 20px;
+      position: relative;
+    z-index: 1;
+      font-size: 1.2em; /* Ajusta este valor para agrandar el texto del contenido */
     }
+
+    .content h1 {
+    font-size: 1.5em; /* Ajusta este valor al tamaño que prefieras */
+    }
+
+    .progress-container, .error-container {
+      margin-bottom: 20px;
+      width: 100%;
+      background-color: #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .progress-bar, .error-bar {
+      height: 25px;
+      width: 0;
+      text-align: center;
+      color: white;
+    }
+
+    .progress-bar {
+      background-color: #28a745;
+    }
+
+    .error-bar {
+      background-color: #dc3545;
+    }
+
+    .resultado {
+      margin-bottom: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #004d99;
+    }
+
     .respuesta {
       margin-bottom: 20px;
     }
+
     .options {
       display: flex;
       gap: 10px;
     }
+
     .option {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      padding: 8px 12px;
       background-color: #ffffff;
       border: 1px solid #a3c2f1;
       border-radius: 8px;
-      padding: 8px 12px;
       cursor: pointer;
     }
+
     .option:hover {
       background-color: #e7f0ff;
     }
+
     .option.correct {
       background-color: #d4edda;
       border-color: #c3e6cb;
     }
+
     .option.incorrect {
       background-color: #f8d7da;
       border-color: #f5c6cb;
     }
+
     button {
       padding: 10px 15px;
-      font-size: 16px;
-      cursor: pointer;
       background-color: #004d99;
       color: white;
       border: none;
       border-radius: 5px;
-      margin-right: 10px;
+      cursor: pointer;
     }
+
     button:hover {
       background-color: #003366;
     }
+
+    .clear-btn {
+      background-color: #dc3545;
+    }
+
+    .clear-btn:hover {
+      background-color: #c82333;
+    }
+
     footer {
       text-align: center;
       padding: 10px;
       border-top: 1px solid #ccc;
     }
   </style>
-  <title>Actividad de Preposiciones</title>
+  <title>Prepositions Activity</title>
 </head>
 <body>
   <div class="logo-container">
@@ -110,137 +183,178 @@
 
     <div class="header">
       <img src="https://github.com/Mark2024Eze/Proyecto-para-ingles/blob/main/instituto%20overcome.jpg?raw=true" alt="Instituto Overcome">
-      <div class="title">Actividad: Elige la opción correcta</div>
+      <div class="title">Choose the correct preposition</div>
     </div>
 
-    <!-- Contenedor para centrar la imagen -->
-    <div style="display: flex; justify-content: center; margin-top: 20px; width: 100%;">
-        <img src="https://github.com/Mark2024Eze/Animales_Pre-Kinder_1/blob/main/close-up-adorable-kitten-couch.png?raw=true" alt="Imagen descriptiva" style="width: 300px;">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+
+
+    <div class="content">
+
+      <!-- Barra de progreso -->
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar">0%</div>
+      </div>
+
+      <!-- Barra de errores -->
+      <div class="error-container">
+        <div class="error-bar" id="errorBar">0%</div>
+      </div>
+
+      <!-- Resultado -->
+      <div class="resultado" id="resultado">Correct: 0, Incorrect: 0</div>
+
+      <div style="display: flex; justify-content: center; margin-top: 20px; width: 100%;">
+        <img src="https://github.com/Mark2024Eze/Preposiciones_Kinder/blob/main/Imagen%20de%20WhatsApp%202024-11-01%20a%20las%2015.07.38_454ec0e1.jpg?raw=true" alt="Imagen descriptiva" style="width: 600px;">
+      </div>
+
+      <h1>Prepositions Activity</h1>
+
+      <!-- Preguntas -->
+      <div class="respuesta">
+        <p>1) The book is ______ the wardrobe.</p>
+        <div class="options">
+          <label class="option"><input type="radio" name="Q1" value="on"> on</label>
+          <label class="option"><input type="radio" name="Q1" value="in"> in</label>
+          <label class="option"><input type="radio" name="Q1" value="under"> under</label>
+        </div>
       </div>
       
-    <div class="content">
-      <h1>Complete con "on", "in" o "under"</h1>
-
       <div class="respuesta">
-        <p>1) The book is ____ the wardrobe.</p>
+        <p>2) The yo-yo is ______ the bookcase.</p>
         <div class="options">
-          <label class="option"><input type="radio" name="Q1" data-correct="true">on</label>
-          <label class="option"><input type="radio" name="Q1" data-correct="false">in</label>
-          <label class="option"><input type="radio" name="Q1" data-correct="false">under</label>
+          <label class="option"><input type="radio" name="Q2" value="on"> on</label>
+          <label class="option"><input type="radio" name="Q2" value="in"> in</label>
+          <label class="option"><input type="radio" name="Q2" value="under"> under</label>
         </div>
       </div>
 
       <div class="respuesta">
-        <p>2) The yo-yo is ____ the bookcase.</p>
+        <p>3) The ball is ______ the washbowl.</p>
         <div class="options">
-          <label class="option"><input type="radio" name="Q2" data-correct="true">on</label>
-          <label class="option"><input type="radio" name="Q2" data-correct="false">in</label>
-          <label class="option"><input type="radio" name="Q2" data-correct="false">under</label>
+          <label class="option"><input type="radio" name="Q3" value="on"> on</label>
+          <label class="option"><input type="radio" name="Q3" value="in"> in</label>
+          <label class="option"><input type="radio" name="Q3" value="under"> under</label>
         </div>
       </div>
 
       <div class="respuesta">
-        <p>3) The ball is ____ the basket.</p>
+        <p>4) The ruler is ______ the rug.</p>
         <div class="options">
-          <label class="option"><input type="radio" name="Q3" data-correct="false">on</label>
-          <label class="option"><input type="radio" name="Q3" data-correct="true">in</label>
-          <label class="option"><input type="radio" name="Q3" data-correct="false">under</label>
+          <label class="option"><input type="radio" name="Q4" value="on"> on</label>
+          <label class="option"><input type="radio" name="Q4" value="in"> in</label>
+          <label class="option"><input type="radio" name="Q4" value="under"> under</label>
         </div>
       </div>
 
       <div class="respuesta">
-        <p>4) The ruler is ____ the floor.</p>
+        <p>5) The shoes are ______ the wardrobe.</p>
         <div class="options">
-          <label class="option"><input type="radio" name="Q4" data-correct="true">on</label>
-          <label class="option"><input type="radio" name="Q4" data-correct="false">in</label>
-          <label class="option"><input type="radio" name="Q4" data-correct="false">under</label>
+          <label class="option"><input type="radio" name="Q5" value="on"> on</label>
+          <label class="option"><input type="radio" name="Q5" value="in"> in</label>
+          <label class="option"><input type="radio" name="Q5" value="under"> under</label>
         </div>
       </div>
 
       <div class="respuesta">
-        <p>5) The teddy is ____ the bag.</p>
+        <p>6) The teddy bear is ______ the backpack.</p>
         <div class="options">
-          <label class="option"><input type="radio" name="Q5" data-correct="false">on</label>
-          <label class="option"><input type="radio" name="Q5" data-correct="true">in</label>
-          <label class="option"><input type="radio" name="Q5" data-correct="false">under</label>
+          <label class="option"><input type="radio" name="Q6" value="on"> on</label>
+          <label class="option"><input type="radio" name="Q6" value="in"> in</label>
+          <label class="option"><input type="radio" name="Q6" value="under"> under</label>
         </div>
       </div>
 
       <div class="respuesta">
-        <p>6) The sharpener is ____ the table.</p>
+        <p>7) The sharpener is ______ the chair.</p>
         <div class="options">
-          <label class="option"><input type="radio" name="Q6" data-correct="false">on</label>
-          <label class="option"><input type="radio" name="Q6" data-correct="false">in</label>
-          <label class="option"><input type="radio" name="Q6" data-correct="true">under</label>
+          <label class="option"><input type="radio" name="Q7" value="on"> on</label>
+          <label class="option"><input type="radio" name="Q7" value="in"> in</label>
+          <label class="option"><input type="radio" name="Q7" value="under"> under</label>
         </div>
       </div>
 
       <div class="respuesta">
-        <p>7) The rubber is ____ the cushion.</p>
+        <p>8) The rubber is ______ the pillow.</p>
         <div class="options">
-          <label class="option"><input type="radio" name="Q7" data-correct="true">on</label>
-          <label class="option"><input type="radio" name="Q7" data-correct="false">in</label>
-          <label class="option"><input type="radio" name="Q7" data-correct="false">under</label>
+          <label class="option"><input type="radio" name="Q8" value="on"> on</label>
+          <label class="option"><input type="radio" name="Q8" value="in"> in</label>
+          <label class="option"><input type="radio" name="Q8" value="under"> under</label>
         </div>
       </div>
 
       <div class="respuesta">
-        <p>8) The sock is ____ the bed.</p>
+        <p>9) The socks is ______ the bed.</p>
         <div class="options">
-          <label class="option"><input type="radio" name="Q8" data-correct="false">on</label>
-          <label class="option"><input type="radio" name="Q8" data-correct="false">in</label>
-          <label class="option"><input type="radio" name="Q8" data-correct="true">under</label>
+          <label class="option"><input type="radio" name="Q9" value="on"> on</label>
+          <label class="option"><input type="radio" name="Q9" value="in"> in</label>
+          <label class="option"><input type="radio" name="Q9" value="under"> under</label>
         </div>
       </div>
 
       <div class="respuesta">
-        <p>9) The shirt is ____ the wardrobe.</p>
+        <p>10) The sweater is ______ the wardrobe.</p>
         <div class="options">
-          <label class="option"><input type="radio" name="Q9" data-correct="false">on</label>
-          <label class="option"><input type="radio" name="Q9" data-correct="true">in</label>
-          <label class="option"><input type="radio" name="Q9" data-correct="false">under</label>
+          <label class="option"><input type="radio" name="Q10" value="on"> on</label>
+          <label class="option"><input type="radio" name="Q10" value="in"> in</label>
+          <label class="option"><input type="radio" name="Q10" value="under"> under</label>
         </div>
       </div>
 
-      <!-- Botones -->
-      <button id="verifyButton">Verificar respuestas</button>
-      <button id="clearButton" class="clear-btn">Borrar respuestas</button>
+      <button onclick="checkAnswers()">Check Answers</button>
+      <button class="clear-btn" onclick="clearAnswers()">Clear Selections</button>
     </div>
 
-    <footer>
-      <p>&copy; 2024 Profesora Mariana Cuello.</p>
-    </footer>
+    <footer>&copy; Prepositions Activity - Profesora Mariana Cuello © 2024</footer>
   </div>
 
   <script>
-    const correctAnswers = {
-      Q1: 'on',
-      Q2: 'on',
-      Q3: 'in',
-      Q4: 'on',
-      Q5: 'in',
-      Q6: 'under',
-      Q7: 'on',
-      Q8: 'under',
-      Q9: 'in'
+    const answers = {
+      Q1: "on",
+      Q2: "on",
+      Q3: "in",
+      Q4: "in",
+      Q5: "in",
+      Q6: "in",
+      Q7: "under",
+      Q8: "on",
+      Q9: "under",
+      Q10: "in"
     };
 
-    document.getElementById('verifyButton').addEventListener('click', () => {
-      document.querySelectorAll('.respuesta').forEach((res) => {
-        const checkedInput = res.querySelector('input[type="radio"]:checked');
-        if (checkedInput) {
-          const correct = checkedInput.getAttribute('data-correct') === 'true';
-          checkedInput.parentElement.classList.add(correct ? 'correct' : 'incorrect');
-        }
-      });
-    });
+    function checkAnswers() {
+      let correct = 0;
+      let incorrect = 0;
 
-    document.getElementById('clearButton').addEventListener('click', () => {
-      document.querySelectorAll('input[type="radio"]').forEach((input) => {
-        input.checked = false;
-        input.parentElement.classList.remove('correct', 'incorrect');
-      });
-    });
+      for (let key in answers) {
+        const selectedOption = document.querySelector(`input[name="${key}"]:checked`);
+        if (selectedOption) {
+          const isCorrect = selectedOption.value === answers[key];
+          selectedOption.parentElement.classList.add(isCorrect ? 'correct' : 'incorrect');
+          isCorrect ? correct++ : incorrect++;
+        }
+      }
+
+      const total = Object.keys(answers).length;
+      const progressPercent = (correct / total) * 100;
+      const errorPercent = (incorrect / total) * 100;
+
+      document.getElementById("resultado").textContent = `Correct: ${correct}, Incorrect: ${incorrect}`;
+      document.getElementById("progressBar").style.width = `${progressPercent}%`;
+      document.getElementById("progressBar").textContent = `${progressPercent.toFixed(0)}%`;
+      document.getElementById("errorBar").style.width = `${errorPercent}%`;
+      document.getElementById("errorBar").textContent = `${errorPercent.toFixed(0)}%`;
+    }
+
+    function clearAnswers() {
+      document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
+      document.querySelectorAll('.option').forEach(option => option.classList.remove('correct', 'incorrect'));
+      document.getElementById("resultado").textContent = "Correct: 0, Incorrect: 0";
+      document.getElementById("progressBar").style.width = "0%";
+      document.getElementById("progressBar").textContent = "0%";
+      document.getElementById("errorBar").style.width = "0%";
+      document.getElementById("errorBar").textContent = "0%";
+    }
   </script>
 </body>
 </html>
