@@ -98,6 +98,7 @@
       font-size: 2em;
       color: #004d99;
       font-family: 'Montserrat', sans-serif;
+      font-weight: bold; /* Aplica negrita */
     }
 
     .content {
@@ -335,6 +336,7 @@
     function checkAnswers() {
       let correct = 0;
       let incorrect = 0;
+
       for (let key in answers) {
         const selectedOption = document.querySelector(`input[name="${key}"]:checked`);
         if (selectedOption) {
@@ -343,19 +345,29 @@
           isCorrect ? correct++ : incorrect++;
         }
       }
-      const total = correct + incorrect;
-      document.getElementById("progressBar").style.width = `${(correct / total) * 100}%`;
-      document.getElementById("errorBar").style.width = `${(incorrect / total) * 100}%`;
+
+      const total = Object.keys(answers).length;
+      const progressPercent = (correct / total) * 100;
+      const errorPercent = (incorrect / total) * 100;
+
       document.getElementById("resultado").textContent = `Correct: ${correct}, Incorrect: ${incorrect}`;
+      document.getElementById("progressBar").style.width = `${progressPercent}%`;
+      document.getElementById("progressBar").textContent = `${progressPercent.toFixed(0)}%`;
+      document.getElementById("errorBar").style.width = `${errorPercent}%`;
+      document.getElementById("errorBar").textContent = `${errorPercent.toFixed(0)}%`;
     }
 
     function clearAnswers() {
-      document.querySelectorAll("input[type='radio']").forEach(input => input.checked = false);
-      document.querySelectorAll(".option").forEach(option => option.classList.remove('correct', 'incorrect'));
-      document.getElementById("progressBar").style.width = "0%";
-      document.getElementById("errorBar").style.width = "0%";
+      document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
+      document.querySelectorAll('.option').forEach(option => option.classList.remove('correct', 'incorrect'));
       document.getElementById("resultado").textContent = "Correct: 0, Incorrect: 0";
+      document.getElementById("progressBar").style.width = "0%";
+      document.getElementById("progressBar").textContent = "0%";
+      document.getElementById("errorBar").style.width = "0%";
+      document.getElementById("errorBar").textContent = "0%";
     }
+
+
   </script>
 </body>
 </html>
