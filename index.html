@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=o.95">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -12,11 +12,19 @@
       background-color: #f4f4f9;
       color: #333;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; /* Centra el contenido verticalmente */
     }
 
     .logo-container {
-      position: relative;
-      min-height: 100vh;
+        display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
     }
 
     .background-logo {
@@ -26,65 +34,79 @@
       width: 100%;
       height: 100%;
       background-image: url('https://github.com/Mark2024Eze/Proyecto-para-ingles/blob/main/instituto%20overcome.jpg?raw=true');
-      background-size: 50%;
+      background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
       opacity: 0.1;
       z-index: -1;
     }
-     /* Ajustes para pantallas más pequeñas, como móviles */
-     @media (max-width: 400px) {
+
+    /* Responsividad para dispositivos pequeños */
+    @media (max-width: 600px) {
+      .header .title {
+        font-size: 1.5em;
+        text-align: center;
+      }
       .background-logo {
-        background-size: 210px auto;
-        background-position: center 1500px;
+        background-size: 200px auto;
+        background-position: top 50px;
+      }
+      .content img {
+        width: 100%;
+      }
+      .content h1 {
+        font-size: 1.2em;
       }
     }
 
-    /* Ajustes para pantallas medianas, como tablets */
-    @media (min-width: 769px) and (max-width: 1200px) {
+    /* Ajustes para tablets y pantallas medianas */
+    @media (min-width: 601px) and (max-width: 1200px) {
       .background-logo {
-        background-size: 500px auto;
+        background-size: 400px auto;
         background-position: center 200px;
       }
+      .content img {
+        width: 80%;
+      }
     }
 
-    /* Ajustes para pantallas grandes, como PC */
+    /* Ajustes para pantallas grandes */
     @media (min-width: 1201px) {
       .background-logo {
         background-size: 35%;
-        background-position: center 750px;
+        background-position: center 600px;
+      }
+      .content img {
+        width: 600px;
       }
     }
 
     .header {
       display: flex;
       align-items: center;
-      justify-content: center; /* pone el titulo al centro de la cabecera*/
+      justify-content: center;
       padding: 20px;
       background-color: transparent;
     }
 
     .header img {
-      max-width: 120px;
-      margin-right: 20px;
+      max-width: 100px;
+      margin-right: 15px;
     }
 
     .header .title {
-      font-size: 2.1em;
+      font-size: 2em;
       color: #004d99;
-      font-family: 'montserrat regular', sans-serif; /* Cambia 'NuevaFuente' al nombre de tu fuente elegida */
+      font-family: 'Montserrat', sans-serif;
     }
 
     .content {
       padding: 20px;
       margin: 20px;
-      position: relative;
-    z-index: 1;
-      font-size: 1.2em; /* Ajusta este valor para agrandar el texto del contenido */
-    }
-
-    .content h1 {
-    font-size: 1.5em; /* Ajusta este valor al tamaño que prefieras */
+      width: 90%;
+      max-width: 800px;
+      text-align: center;
+      z-index: 1;
     }
 
     .progress-container, .error-container {
@@ -100,6 +122,7 @@
       width: 0;
       text-align: center;
       color: white;
+      transition: width 0.3s;
     }
 
     .progress-bar {
@@ -111,19 +134,15 @@
     }
 
     .resultado {
-      margin-bottom: 30px;
-      font-size: 18px;
-      font-weight: bold;
+      font-size: 1.1em;
       color: #004d99;
-    }
-
-    .respuesta {
-      margin-bottom: 20px;
     }
 
     .options {
       display: flex;
+      flex-wrap: wrap;
       gap: 10px;
+      justify-content: center;
     }
 
     .option {
@@ -134,18 +153,12 @@
       cursor: pointer;
     }
 
-    .option:hover {
-      background-color: #e7f0ff;
-    }
-
     .option.correct {
       background-color: #d4edda;
-      border-color: #c3e6cb;
     }
 
     .option.incorrect {
       background-color: #f8d7da;
-      border-color: #f5c6cb;
     }
 
     button {
@@ -155,6 +168,8 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      font-size: 1em;
+      margin: 10px;
     }
 
     button:hover {
@@ -172,12 +187,15 @@
     footer {
       text-align: center;
       padding: 10px;
+      font-size: 0.9em;
+      width: 100%;
       border-top: 1px solid #ccc;
     }
   </style>
   <title>Prepositions Activity</title>
 </head>
 <body>
+    
   <div class="logo-container">
     <div class="background-logo"></div>
 
@@ -186,31 +204,22 @@
       <div class="title">Choose the correct preposition</div>
     </div>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
-
-
     <div class="content">
-
-      <!-- Barra de progreso -->
       <div class="progress-container">
         <div class="progress-bar" id="progressBar">0%</div>
       </div>
 
-      <!-- Barra de errores -->
       <div class="error-container">
         <div class="error-bar" id="errorBar">0%</div>
       </div>
 
-      <!-- Resultado -->
       <div class="resultado" id="resultado">Correct: 0, Incorrect: 0</div>
 
-      <div style="display: flex; justify-content: center; margin-top: 20px; width: 100%;">
-        <img src="https://github.com/Mark2024Eze/Preposiciones_Kinder/blob/main/Imagen%20de%20WhatsApp%202024-11-01%20a%20las%2015.07.38_454ec0e1.jpg?raw=true" alt="Imagen descriptiva" style="width: 600px;">
-      </div>
+      <img src="https://github.com/Mark2024Eze/Preposiciones_Kinder/blob/main/Imagen%20de%20WhatsApp%202024-11-01%20a%20las%2015.07.38_454ec0e1.jpg?raw=true" alt="Imagen descriptiva">
 
       <h1>Prepositions Activity</h1>
 
-      <!-- Preguntas -->
+      <!-- Preguntas y opciones -->
       <div class="respuesta">
         <p>1) The book is ______ the wardrobe.</p>
         <div class="options">
@@ -219,8 +228,8 @@
           <label class="option"><input type="radio" name="Q1" value="under"> under</label>
         </div>
       </div>
-      
-      <div class="respuesta">
+
+       <div class="respuesta">
         <p>2) The yo-yo is ______ the bookcase.</p>
         <div class="options">
           <label class="option"><input type="radio" name="Q2" value="on"> on</label>
@@ -300,7 +309,8 @@
           <label class="option"><input type="radio" name="Q10" value="under"> under</label>
         </div>
       </div>
-
+      <!-- Más preguntas aquí -->
+      
       <button onclick="checkAnswers()">Check Answers</button>
       <button class="clear-btn" onclick="clearAnswers()">Clear Selections</button>
     </div>
@@ -325,7 +335,6 @@
     function checkAnswers() {
       let correct = 0;
       let incorrect = 0;
-
       for (let key in answers) {
         const selectedOption = document.querySelector(`input[name="${key}"]:checked`);
         if (selectedOption) {
@@ -334,26 +343,18 @@
           isCorrect ? correct++ : incorrect++;
         }
       }
-
-      const total = Object.keys(answers).length;
-      const progressPercent = (correct / total) * 100;
-      const errorPercent = (incorrect / total) * 100;
-
+      const total = correct + incorrect;
+      document.getElementById("progressBar").style.width = `${(correct / total) * 100}%`;
+      document.getElementById("errorBar").style.width = `${(incorrect / total) * 100}%`;
       document.getElementById("resultado").textContent = `Correct: ${correct}, Incorrect: ${incorrect}`;
-      document.getElementById("progressBar").style.width = `${progressPercent}%`;
-      document.getElementById("progressBar").textContent = `${progressPercent.toFixed(0)}%`;
-      document.getElementById("errorBar").style.width = `${errorPercent}%`;
-      document.getElementById("errorBar").textContent = `${errorPercent.toFixed(0)}%`;
     }
 
     function clearAnswers() {
-      document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
-      document.querySelectorAll('.option').forEach(option => option.classList.remove('correct', 'incorrect'));
-      document.getElementById("resultado").textContent = "Correct: 0, Incorrect: 0";
+      document.querySelectorAll("input[type='radio']").forEach(input => input.checked = false);
+      document.querySelectorAll(".option").forEach(option => option.classList.remove('correct', 'incorrect'));
       document.getElementById("progressBar").style.width = "0%";
-      document.getElementById("progressBar").textContent = "0%";
       document.getElementById("errorBar").style.width = "0%";
-      document.getElementById("errorBar").textContent = "0%";
+      document.getElementById("resultado").textContent = "Correct: 0, Incorrect: 0";
     }
   </script>
 </body>
